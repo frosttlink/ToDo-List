@@ -1,4 +1,6 @@
 import logo from "../../assets/logo.svg";
+import clipboardText from "../../assets/clipboardText.svg";
+
 import {
   NewTaskInput,
   NewTaskButton,
@@ -11,6 +13,7 @@ import {
   Created,
   Done,
   Stats,
+  NoneTasksExisting,
 } from "./styles";
 import { TaskCard } from "./components/TaskCard";
 import { PlusCircle } from "phosphor-react";
@@ -63,10 +66,10 @@ export function Home() {
       <HomeContent>
         <AreaRegisterTask>
           <NewTaskInput
-            type="text" 
-            placeholder="Adicione uma nova tarefa" 
+            type="text"
+            placeholder="Adicione uma nova tarefa"
             value={newTaskText}
-            onChange={e => setNewTaskText(e.target.value)}
+            onChange={(e) => setNewTaskText(e.target.value)}
           />
           <NewTaskButton onClick={addTask}>
             Criar
@@ -74,32 +77,44 @@ export function Home() {
           </NewTaskButton>
         </AreaRegisterTask>
 
-          <TaskStatus>
-            <Stats>
-              <Created>Tarefas criadas</Created>
-              <CounterTask>
-                <p>{tasks.length}</p>
-              </CounterTask>
-            </Stats>
-            <Stats>
-              <Done>Concluídas</Done>{" "}
-              <CounterTask>
-                <p>{completedCount} de {tasks.length}</p>
-              </CounterTask>
-            </Stats>
-          </TaskStatus>
-          
+        <TaskStatus>
+          <Stats>
+            <Created>Tarefas criadas</Created>
+            <CounterTask>
+              <p>{tasks.length}</p>
+            </CounterTask>
+          </Stats>
+          <Stats>
+            <Done>Concluídas</Done>{" "}
+            <CounterTask>
+              <p>
+                {completedCount} de {tasks.length}
+              </p>
+            </CounterTask>
+          </Stats>
+        </TaskStatus>
+
         <div>
-          <TaskList>
-            {tasks.map(task => (
-              <TaskCard 
-                key={task.id}
-                task={task}
-                onDelete={removeTask}
-                onToggle={taskIsComplete}
-              />
-            ))}
-          </TaskList>
+          {tasks.length === 0 ? (
+            <NoneTasksExisting>
+              <img src={clipboardText} alt="" />
+              <div>
+                <strong>Você ainda não tem tarefas cadastradas</strong>
+                <span>Crie tarefas e organize seus itens a fazer</span>
+              </div>
+            </NoneTasksExisting>
+          ) : (
+            <TaskList>
+              {tasks.map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  onDelete={removeTask}
+                  onToggle={taskIsComplete}
+                />
+              ))}
+            </TaskList>
+          )}
         </div>
       </HomeContent>
     </div>

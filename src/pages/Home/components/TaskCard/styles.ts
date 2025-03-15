@@ -4,9 +4,9 @@ import styled from "styled-components";
 export const Task = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  width: 100%;
+  justify-content: space-between;
+  
+  min-width: 736px;
   height: 4.5rem;
   padding: 1rem;
   gap: 0.75rem;
@@ -15,7 +15,12 @@ export const Task = styled.div`
   color: ${(props) => props.theme["gray-100"]};
 
   border: 1px solid ${(props) => props.theme["gray-400"]};
-  border-radius: 8px;
+  border-radius: 8px; 
+
+  p {
+    display: flex;
+    flex: 1;
+  }
 `;
 
 export const TaskCheck = styled.input.attrs({ type: "checkbox" })`

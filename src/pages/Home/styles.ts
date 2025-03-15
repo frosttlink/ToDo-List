@@ -77,6 +77,7 @@ export const NewTaskButton = styled.button`
 export const TaskStatus = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   margin-top: 4rem;
   margin-bottom: 1.5rem;
@@ -123,4 +124,24 @@ export const Stats = styled.div`
   justify-content: center;
 
   gap: 0.5rem;
+`
+
+export const NoneTasksExisting = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: ${props => props.theme["gray-300"]};
+  }
+
+  padding: 4rem 1.5rem;
+  gap: 1rem;
 `
